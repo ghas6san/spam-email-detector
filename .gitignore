@@ -2,3 +2,5 @@
 !app.py
 !README.md
 !.gitignore
+!templates/
+!templates/index.html

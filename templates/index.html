@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كشف الرسائل المشبوهة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg border border-gray-100">
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-indigo-600 mb-2">نظام فحص الرسائل</h1>
+            <p class="text-gray-500 text-sm">أدخل نص الرسالة باللغة الإنجليزية لاكتشاف ما إذا كانت احتيالية أم سليمة</p>
+        </div>
+
+        <form method="POST" action="/" class="space-y-4">
+            <textarea name="message" rows="4" 
+                class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-left" 
+                placeholder="Ex: Urgent! you won 1000$ free money..." required dir="ltr"></textarea>
+            
+            <button type="submit" 
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition duration-300 shadow-lg">
+                فحص الرسالة الآن
+            </button>
+        </form>
+
+        {% if result %}
+        <div class="mt-6 p-4 rounded-xl text-center text-lg font-bold
+            {% if result == 'مشبوهة' %} bg-red-100 text-red-700 border border-red-200
+            {% else %} bg-green-100 text-green-700 border border-green-200 {% endif %}">
+            
+            {% if result == 'مشبوهة' %}
+                ⚠️ تحذير: هذه الرسالة تُصنف كـ [مشبوهة/احتيال]!
+            {% else %}
+                ✅ اطمئن: هذه الرسالة تُصنف كـ [سليمة].
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
